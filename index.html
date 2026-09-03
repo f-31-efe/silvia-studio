@@ -191,21 +191,20 @@
   }
 
   /* the wordmark is the real logo artwork, feathered so it sits on the ground */
-  .mark{
-    position:relative;display:inline-block;margin:0;
-    line-height:0;isolation:isolate;
-    filter:drop-shadow(0 0 52px rgba(255,138,30,.20));
-  }
+  /* the wordmark is the real logo artwork; `screen` drops its near-black
+     ground into the page ground so only the glowing letters remain */
+  .mark{position:relative;display:inline-block;margin:0;line-height:0}
   .mark img{
     display:block;
     width:clamp(232px,44vw,532px);
     height:auto;
+    mix-blend-mode:screen;
   }
   .mark::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(100deg,transparent 30%,rgba(255,240,214,.30) 44%,transparent 58%);
+    background:linear-gradient(100deg,transparent 32%,rgba(255,226,180,.20) 45%,transparent 58%);
     background-size:260% 100%;background-repeat:no-repeat;background-position:200% 0;
-    mix-blend-mode:overlay;
+    mix-blend-mode:screen;
   }
 
   .lede{

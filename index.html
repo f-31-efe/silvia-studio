@@ -191,20 +191,21 @@
   }
 
   /* the wordmark is the real logo artwork, feathered so it sits on the ground */
-  /* the wordmark is the real logo artwork; `screen` drops its near-black
-     ground into the page ground so only the glowing letters remain */
-  .mark{position:relative;display:inline-block;margin:0;line-height:0}
-  .mark img{
-    display:block;
-    width:clamp(232px,44vw,532px);
-    height:auto;
-    mix-blend-mode:screen;
+  /* the wordmark is the real logo, cut out of its plate: the letters carry
+     their own alpha, so there is no box to blend away */
+  .mark{
+    position:relative;display:inline-block;margin:0;line-height:0;
+    filter:drop-shadow(0 6px 26px rgba(0,0,0,.55)) drop-shadow(0 0 42px rgba(255,138,30,.22));
   }
+  .mark img{display:block;width:clamp(232px,44vw,528px);height:auto}
+  /* the sweep is masked to the letter shapes, never a rectangle */
   .mark::after{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(100deg,transparent 32%,rgba(255,226,180,.20) 45%,transparent 58%);
+    background:linear-gradient(100deg,transparent 32%,rgba(255,244,222,.55) 45%,transparent 58%);
     background-size:260% 100%;background-repeat:no-repeat;background-position:200% 0;
-    mix-blend-mode:screen;
+    -webkit-mask-image:url("wordmark.png");mask-image:url("wordmark.png");
+    -webkit-mask-size:100% 100%;mask-size:100% 100%;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   }
 
   .lede{
@@ -509,7 +510,7 @@
   <div class="wrap hero-inner">
     <p class="eyebrow" data-tr="Tek kişilik stüdyo · Türkiye" data-en="One-person studio · Türkiye">Tek kişilik stüdyo · Türkiye</p>
 
-    <h1 class="mark"><img src="wordmark.png" alt="Silvia Studio" width="687" height="294" fetchpriority="high"></h1>
+    <h1 class="mark"><img src="wordmark.png" alt="Silvia Studio" width="624" height="256" fetchpriority="high"></h1>
 
     <p class="lede" data-tr="Fikri bitmiş ürüne çeviriyorum." data-en="I turn ideas into finished products.">Fikri bitmiş ürüne çeviriyorum.</p>
 
